@@ -1,4 +1,4 @@
-const ListPage = () => {
+const ListPage: React.FC = () => {
   return <div>ListPage</div>;
 };
 
