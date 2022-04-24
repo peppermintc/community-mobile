@@ -39,5 +39,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "@typescript-eslint/eslint-plugin": "^5.20.0"
   }
 }
