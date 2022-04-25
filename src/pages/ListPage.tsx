@@ -1,8 +1,5 @@
-import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
-import { axiosGetCategories } from "../api";
 import CategorySelector from "../components/CategorySelector";
-import { Category } from "../interfaces";
 
 const Page = styled.div`
   display: flex;
@@ -19,16 +16,10 @@ const Title = styled.span`
 `;
 
 const ListPage: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  useLayoutEffect(() => {
-    axiosGetCategories().then((categories) => setCategories(categories));
-  }, []);
-
   return (
     <Page>
       <Title>커뮤니티</Title>
-      <CategorySelector categories={categories} />
+      <CategorySelector />
     </Page>
   );
 };

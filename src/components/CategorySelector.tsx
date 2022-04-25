@@ -1,10 +1,7 @@
-import React, { MouseEvent, useRef, useState } from "react";
+import React, { MouseEvent, useLayoutEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { axiosGetCategories } from "../api";
 import { Category } from "../interfaces";
-
-interface CategorySelectorProps {
-  categories: Category[];
-}
 
 interface ButtonsProps {
   children: React.ReactNode;
@@ -12,6 +9,13 @@ interface ButtonsProps {
 
 interface ButtonProps {
   label: string;
+  isSelected: boolean;
+  onClick: React.MouseEventHandler;
+}
+
+interface ButtonContainerProps {
+  isSelected: boolean;
+  onClick: React.MouseEventHandler;
 }
 
 const Container = styled.div`
@@ -37,30 +41,26 @@ const ButtonsContainer = styled.div`
   padding: 0 22px;
 `;
 
-const ButtonContainer = styled.button`
+const ButtonContainer = styled.button<ButtonContainerProps>`
   cursor: pointer;
   width: max-content;
   height: 100%;
   padding: 0 15px;
-  background-color: #ffffff;
-  color: #7a7a7a;
   border: 1px solid #e8e8e8;
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
   display: flex;
   align-items: center;
+  color: ${(props) => (props.isSelected ? "#ffffff" : "#7a7a7a")};
+  background-color: ${(props) => (props.isSelected ? "#2C7FFF" : "#ffffff")};
 `;
 
-const CategorySelector: React.FC<CategorySelectorProps> = ({ categories }) => {
+const Button = ({ label, isSelected, onClick }: ButtonProps) => {
   return (
-    <Container>
-      <Buttons>
-        {categories.map((category) => (
-          <Button key={category.categoryPk} label={category.categoryName} />
-        ))}
-      </Buttons>
-    </Container>
+    <ButtonContainer isSelected={isSelected} onClick={onClick}>
+      {label}
+    </ButtonContainer>
   );
 };
 
@@ -117,8 +117,29 @@ const Buttons = ({ children }: ButtonsProps) => {
   );
 };
 
-const Button = ({ label }: ButtonProps) => {
-  return <ButtonContainer>{label}</ButtonContainer>;
+const CategorySelector: React.FC = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [currentCategoryPrimaryKey, setCurrentCategoryPrimaryKey] =
+    useState<number>(1);
+
+  useLayoutEffect(() => {
+    axiosGetCategories().then((categories) => setCategories(categories));
+  }, []);
+
+  return (
+    <Container>
+      <Buttons>
+        {categories.map((category) => (
+          <Button
+            key={category.categoryPk}
+            label={category.categoryName}
+            isSelected={category.categoryPk === currentCategoryPrimaryKey}
+            onClick={() => setCurrentCategoryPrimaryKey(category.categoryPk)}
+          />
+        ))}
+      </Buttons>
+    </Container>
+  );
 };
 
 export default CategorySelector;
