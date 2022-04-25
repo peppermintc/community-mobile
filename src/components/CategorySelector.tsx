@@ -18,7 +18,7 @@ interface ButtonContainerProps {
   onClick: React.MouseEventHandler;
 }
 
-const Container = styled.div`
+const CategorySelectorContainer = styled.div`
   position: relative;
   width: 100%;
   height: 38px;
@@ -30,6 +30,8 @@ const Container = styled.div`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  background-color: green;
 `;
 
 const ButtonsContainer = styled.div`
@@ -127,7 +129,7 @@ const CategorySelector: React.FC = () => {
   }, []);
 
   return (
-    <Container>
+    <CategorySelectorContainer>
       <Buttons>
         {categories.map((category) => (
           <Button
@@ -138,7 +140,7 @@ const CategorySelector: React.FC = () => {
           />
         ))}
       </Buttons>
-    </Container>
+    </CategorySelectorContainer>
   );
 };
 
