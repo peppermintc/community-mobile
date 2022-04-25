@@ -4,21 +4,7 @@ import { axiosGetPosts } from "../api";
 import viewCountIcon from "../img/eye.png";
 import likeCountIcon from "../img/like-thumb.png";
 import talkCountIcon from "../img/talk.png";
-
-interface Post {
-  categoryPk: number;
-  categoryName: string;
-  pk: number;
-  title: string;
-  content: string;
-  viewCount: number;
-  likeCount: number;
-  commentCount: number;
-  imageUrl: string | null;
-  writtenAt: string;
-  writerNickName: string;
-  writerProfileUrl: string;
-}
+import { Post } from "../interfaces";
 
 interface PostItemProps {
   post: Post;
