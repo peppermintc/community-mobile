@@ -1,11 +1,6 @@
 import React, { MouseEvent, useRef, useState } from "react";
 import styled from "styled-components";
-
-interface Category {
-  categoryPk: number;
-  categoryCode: string;
-  categoryName: string;
-}
+import { Category } from "../interfaces";
 
 interface CategorySelectorProps {
   categories: Category[];
