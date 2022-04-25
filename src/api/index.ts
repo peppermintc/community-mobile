@@ -6,3 +6,10 @@ export const axiosGetCategories = async () => {
     .then((response) => response.data)
     .catch(console.error);
 };
+
+export const axiosGetPosts = async () => {
+  return await axios
+    .get("http://localhost:4000/posts")
+    .then((response) => response.data)
+    .catch(console.error);
+};
