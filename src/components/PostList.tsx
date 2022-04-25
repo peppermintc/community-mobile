@@ -77,6 +77,10 @@ const Title = styled.div`
   margin-top: 19px;
   font-weight: 700;
   line-height: 24px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Content = styled.div`
