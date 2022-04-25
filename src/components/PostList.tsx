@@ -5,6 +5,7 @@ import viewCountIcon from "../img/eye.png";
 import likeCountIcon from "../img/like-thumb.png";
 import talkCountIcon from "../img/talk.png";
 import { Post } from "../interfaces";
+import { formatWrittenAt } from "../utils";
 
 interface PostItemProps {
   post: Post;
@@ -132,7 +133,7 @@ const Header = ({
       <Section>
         <UserName>{userName}</UserName>
         <PostInfo>
-          {category} ・ {writtenAt}
+          {category} ・ {formatWrittenAt(writtenAt)}
         </PostInfo>
       </Section>
     </HeaderContainer>
