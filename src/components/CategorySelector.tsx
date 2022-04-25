@@ -30,8 +30,6 @@ const CategorySelectorContainer = styled.div`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-
-  background-color: green;
 `;
 
 const ButtonsContainer = styled.div`
