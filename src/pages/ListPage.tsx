@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CategorySelector from "../components/CategorySelector";
+import PostList from "../components/PostList";
 
 const Page = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const ListPage: React.FC = () => {
     <Page>
       <Title>커뮤니티</Title>
       <CategorySelector />
+      <PostList />
     </Page>
   );
 };
