@@ -79,13 +79,21 @@ const Buttons = ({ children }: ButtonsProps) => {
     setIsDragging(false);
   };
 
-  const moveButtons = (movementX: number) => {
+  const scrollButtons = (e: MouseEvent) => {
     if (!buttonsRef || !buttonsRef.current) return;
 
-    const newLeft = `${
-      Number(buttonsRef.current.style.left.slice(0, -2)) + movementX
-    }px`;
-    buttonsRef.current.style.left = newLeft;
+    const newLeft =
+      Number(buttonsRef.current.style.left.slice(0, -2)) + e.movementX;
+    const newLeftPx = `${newLeft}px`;
+    const buttonsLeftX = newLeft;
+    const buttonsRightX = newLeft + buttonsRef.current.offsetWidth;
+
+    let scrollDisable = false;
+    if (buttonsRightX < 100) scrollDisable = true;
+    if (window.innerWidth - buttonsLeftX < 100) scrollDisable = true;
+
+    if (scrollDisable === true) return;
+    else buttonsRef.current.style.left = newLeftPx;
   };
 
   const onButtonsMouseDown = () => draggingOn();
@@ -93,7 +101,7 @@ const Buttons = ({ children }: ButtonsProps) => {
   const onButtonsMouseLeave = () => draggingOff();
   const onButtonsMouseMove = (e: MouseEvent) => {
     if (!isDragging) return;
-    moveButtons(e.movementX);
+    scrollButtons(e);
   };
 
   return (
