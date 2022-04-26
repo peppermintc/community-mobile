@@ -6,7 +6,12 @@ import * as communityActionCreators from "../modules/community";
 const useActionCreators = () => {
   const dispatch = useDispatch();
 
-  const { initStore, setCurrentCategory, setCurrentPost } = useMemo(
+  const {
+    initStore,
+    setCurrentCategory,
+    setCurrentPost,
+    updateCurrentPostLikeCount,
+  } = useMemo(
     () => bindActionCreators(communityActionCreators, dispatch),
     [dispatch],
   );
@@ -15,6 +20,7 @@ const useActionCreators = () => {
     initStore,
     setCurrentCategory,
     setCurrentPost,
+    updateCurrentPostLikeCount,
   };
 };
 

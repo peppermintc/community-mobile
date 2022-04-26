@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import { RootState } from ".";
 import { axiosGetCategories, axiosGetPosts } from "../api";
 import { CATEGORY_ALL } from "../components/CategorySelector";
 import { Category, Post } from "../interfaces";
@@ -57,6 +58,27 @@ export const setCurrentPost = (currentPost: Post) => (dispatch: Dispatch) => {
     payload: currentPost,
   });
 };
+
+export const updateCurrentPostLikeCount =
+  () => async (dispatch: Dispatch, getState: () => RootState) => {
+    const { posts, currentPost } = getState().community;
+
+    if (!currentPost) return;
+
+    const newPosts = posts.map((post) => {
+      if (post.pk === currentPost.pk) {
+        return {
+          ...post,
+          likeCount: post.likeCount + 1,
+        };
+      } else return post;
+    });
+
+    dispatch({
+      type: SET_POSTS,
+      payload: newPosts,
+    });
+  };
 
 // Initial State
 const initialState: CommunityState = {

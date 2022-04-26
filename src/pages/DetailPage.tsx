@@ -27,6 +27,7 @@ interface PostImageProps {
 interface CountButtonProps {
   count: number;
   icon: string;
+  onClick?: React.MouseEventHandler;
 }
 
 const Page = styled.div`
@@ -137,17 +138,30 @@ const PostHeader = ({ post }: PostHeaderProps) => {
 };
 
 const PostFooter = ({ likeCount, commentCount }: PostFooterProps) => {
+  const { currentPost } = useSelector((state: RootState) => state.community);
+
+  const { updateCurrentPostLikeCount } = useActionCreators();
+
+  const onLikeButtonClick = () => {
+    if (!currentPost) return;
+    updateCurrentPostLikeCount();
+  };
+
   return (
     <PostFooterContainer>
-      <CountButton icon={likeIcon} count={likeCount} />
+      <CountButton
+        icon={likeIcon}
+        count={likeCount}
+        onClick={onLikeButtonClick}
+      />
       <CountButton icon={talkIcon} count={commentCount} />
     </PostFooterContainer>
   );
 };
 
-const CountButton = ({ icon, count }: CountButtonProps) => {
+const CountButton = ({ icon, count, onClick }: CountButtonProps) => {
   return (
-    <CountButtonContainer>
+    <CountButtonContainer onClick={onClick}>
       <img src={icon} alt="button icon" />
       {count}
     </CountButtonContainer>
