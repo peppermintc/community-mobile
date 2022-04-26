@@ -3,7 +3,7 @@ import { Post } from "../interfaces";
 import { formatWrittenAt } from "../utils";
 
 interface PostItemHeaderProps {
-  post: Post;
+  post: Post | null;
 }
 
 const PostItemHeaderContainer = styled.div`
@@ -37,15 +37,17 @@ const PostInfo = styled.div`
 
 const PostItemHeader = ({ post }: PostItemHeaderProps) => {
   return (
-    <PostItemHeaderContainer>
-      <ProfileImage src={post.writerProfileUrl} />
-      <Section>
-        <UserName>{post.writerNickName}</UserName>
-        <PostInfo>
-          {post.categoryName} ・ {formatWrittenAt(post.writtenAt)}
-        </PostInfo>
-      </Section>
-    </PostItemHeaderContainer>
+    post && (
+      <PostItemHeaderContainer>
+        <ProfileImage src={post.writerProfileUrl} />
+        <Section>
+          <UserName>{post.writerNickName}</UserName>
+          <PostInfo>
+            {post.categoryName} ・ {formatWrittenAt(post.writtenAt)}
+          </PostInfo>
+        </Section>
+      </PostItemHeaderContainer>
+    )
   );
 };
 
