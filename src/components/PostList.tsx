@@ -106,12 +106,21 @@ const CountInfo = ({ viewCount, likeCount, commentCount }: CountInfoProps) => {
 };
 
 const PostItem = ({ post }: PostItemProps) => {
+  const getImageSrc = (post: Post) => {
+    if (!post.imageUrl) return;
+    if (typeof post.imageUrl === "string") {
+      return post.imageUrl;
+    } else {
+      return post.imageUrl[0];
+    }
+  };
+
   return (
     <PostItemContainer>
       <PostItemHeader post={post} />
       <Title>{post.title}</Title>
       <Content>{post.content}</Content>
-      {post.imageUrl && <PostImage src={post.imageUrl} alt="post image" />}
+      {post.imageUrl && <PostImage src={getImageSrc(post)} alt="post image" />}
       <CountInfo
         viewCount={post.viewCount}
         likeCount={post.likeCount}

@@ -13,7 +13,7 @@ export interface Post {
   viewCount: number;
   likeCount: number;
   commentCount: number;
-  imageUrl: string | null;
+  imageUrl: string | string[] | null;
   writtenAt: string;
   writerNickName: string;
   writerProfileUrl: string;

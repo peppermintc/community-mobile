@@ -13,6 +13,7 @@ const PostItemHeaderContainer = styled.div`
 const ProfileImage = styled.img`
   border-radius: 50%;
   width: 32px;
+  background-color: pink;
 `;
 
 const Section = styled.section`
@@ -36,19 +37,17 @@ const PostInfo = styled.div`
 `;
 
 const PostItemHeader = ({ post }: PostItemHeaderProps) => {
-  return (
-    post && (
-      <PostItemHeaderContainer>
-        <ProfileImage src={post.writerProfileUrl} />
-        <Section>
-          <UserName>{post.writerNickName}</UserName>
-          <PostInfo>
-            {post.categoryName} ・ {formatWrittenAt(post.writtenAt)}
-          </PostInfo>
-        </Section>
-      </PostItemHeaderContainer>
-    )
-  );
+  return post ? (
+    <PostItemHeaderContainer>
+      <ProfileImage src={post.writerProfileUrl} />
+      <Section>
+        <UserName>{post.writerNickName}</UserName>
+        <PostInfo>
+          {post.categoryName} ・ {formatWrittenAt(post.writtenAt)}
+        </PostInfo>
+      </Section>
+    </PostItemHeaderContainer>
+  ) : null;
 };
 
 export default PostItemHeader;
