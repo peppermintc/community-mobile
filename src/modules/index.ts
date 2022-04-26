@@ -1,5 +1,9 @@
 import { combineReducers } from "redux";
-import communityReducer from "./community";
+import communityReducer, { CommunityState } from "./community";
+
+export interface RootState {
+  community: CommunityState;
+}
 
 const rootReducer = combineReducers({
   community: communityReducer,

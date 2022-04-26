@@ -1,7 +1,9 @@
 import React, { MouseEvent, useLayoutEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
 import styled from "styled-components";
-import { axiosGetCategories } from "../api";
-import { Category } from "../interfaces";
+import { RootState } from "../modules";
+import * as communityActionCreators from "../modules/community";
 
 interface ButtonsProps {
   children: React.ReactNode;
@@ -118,12 +120,18 @@ const Buttons = ({ children }: ButtonsProps) => {
 };
 
 const CategorySelector: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [currentCategoryPrimaryKey, setCurrentCategoryPrimaryKey] =
-    useState<number>(1);
+  const { categories, currentCategory } = useSelector(
+    (state: RootState) => state.community,
+  );
+
+  const dispatch = useDispatch();
+  const { setCategories, setCurrentCategory } = bindActionCreators(
+    communityActionCreators,
+    dispatch,
+  );
 
   useLayoutEffect(() => {
-    axiosGetCategories().then((categories) => setCategories(categories));
+    setCategories();
   }, []);
 
   return (
@@ -133,8 +141,8 @@ const CategorySelector: React.FC = () => {
           <Button
             key={category.categoryPk}
             label={category.categoryName}
-            isSelected={category.categoryPk === currentCategoryPrimaryKey}
-            onClick={() => setCurrentCategoryPrimaryKey(category.categoryPk)}
+            isSelected={category.categoryPk === currentCategory?.categoryPk}
+            onClick={() => setCurrentCategory(category)}
           />
         ))}
       </Buttons>

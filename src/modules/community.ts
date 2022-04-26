@@ -8,7 +8,7 @@ interface Action {
   payload: [];
 }
 
-interface CommunityState {
+export interface CommunityState {
   posts: Post[];
   categories: Category[];
   currentPost: Post | null;
