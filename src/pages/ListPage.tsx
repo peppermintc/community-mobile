@@ -2,6 +2,7 @@ import { useLayoutEffect } from "react";
 import styled from "styled-components";
 import CategorySelector from "../components/CategorySelector";
 import PostList from "../components/PostList";
+import WriteButton from "../components/WriteButton";
 import useActionCreators from "../hooks/useActionCreators";
 
 const Page = styled.div`
@@ -30,6 +31,7 @@ const ListPage: React.FC = () => {
       <Title>커뮤니티</Title>
       <CategorySelector />
       <PostList />
+      <WriteButton />
     </Page>
   );
 };
