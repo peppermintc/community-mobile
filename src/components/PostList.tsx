@@ -1,10 +1,11 @@
 import { useLayoutEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { axiosGetPosts } from "../api";
 import viewCountIcon from "../img/eye.png";
 import likeCountIcon from "../img/like-thumb.png";
 import talkCountIcon from "../img/talk.png";
 import { Post } from "../interfaces";
+import { RootState } from "../modules";
 import { formatWrittenAt } from "../utils";
 
 interface PostItemProps {
@@ -181,15 +182,35 @@ const PostItem = ({ post }: PostItemProps) => {
 };
 
 const PostList: React.FC = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
+
+  const { posts, currentCategory } = useSelector(
+    (state: RootState) => state.community,
+  );
 
   useLayoutEffect(() => {
-    axiosGetPosts().then((posts) => setPosts(posts));
-  }, []);
+    const isAllCategory: boolean = currentCategory?.categoryPk === -1;
+    if (isAllCategory) {
+      setFilteredPosts(posts);
+      return;
+    }
+
+    const isPopularCategory: boolean = currentCategory?.categoryPk === 0;
+    if (isPopularCategory) {
+      const popularPosts = posts.filter((post) => post.viewCount >= 100);
+      setFilteredPosts(popularPosts);
+      return;
+    }
+
+    const newFilteredCategory = posts.filter(
+      (post) => post.categoryPk === currentCategory?.categoryPk,
+    );
+    setFilteredPosts(newFilteredCategory);
+  }, [currentCategory]);
 
   return (
     <PostListContainer>
-      {posts.map((post) => (
+      {filteredPosts.map((post) => (
         <PostItem key={post.pk} post={post} />
       ))}
     </PostListContainer>
