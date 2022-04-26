@@ -32,13 +32,13 @@ interface CountInfoItemProps {
 
 const PostListContainer = styled.div`
   width: 100%;
-  height: 0px;
+  height: fit-content;
   background-color: #e8e8e8;
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 6px;
   margin-top: 14px;
+  gap: 6px;
 `;
 
 const PostItemContainer = styled.div`

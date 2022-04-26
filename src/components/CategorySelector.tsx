@@ -33,7 +33,7 @@ interface ButtonContainerProps {
 const CategorySelectorContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 38px;
+  min-height: 38px;
   overflow-x: scroll;
   cursor: grab;
 
