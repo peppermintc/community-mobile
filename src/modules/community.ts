@@ -23,7 +23,7 @@ const SET_POSTS = "SET_POSTS";
 const SET_CURRENT_POST = "SET_CURRENT_POST";
 
 // Action Creators
-export const initListPageState = () => async (dispatch: Dispatch) => {
+export const initStore = () => async (dispatch: Dispatch) => {
   const posts: Post[] = await axiosGetPosts();
   const categories: Category[] = await axiosGetCategories();
 
