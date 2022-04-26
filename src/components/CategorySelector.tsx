@@ -1,9 +1,8 @@
 import React, { MouseEvent, useLayoutEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import useActionCreators from "../hooks/useActionCreators";
 import { RootState } from "../modules";
-import * as communityActionCreators from "../modules/community";
 
 interface ButtonsProps {
   children: React.ReactNode;
@@ -124,11 +123,7 @@ const CategorySelector: React.FC = () => {
     (state: RootState) => state.community,
   );
 
-  const dispatch = useDispatch();
-  const { setCategories, setCurrentCategory } = bindActionCreators(
-    communityActionCreators,
-    dispatch,
-  );
+  const { setCategories, setCurrentCategory } = useActionCreators();
 
   useLayoutEffect(() => {
     setCategories();
