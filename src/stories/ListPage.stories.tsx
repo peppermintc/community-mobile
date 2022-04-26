@@ -1,11 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Provider } from "react-redux";
 import { store } from "..";
-import CategorySelector from "./CategorySelector";
+import ListPage from "../pages/ListPage";
 
 export default {
-  title: "Component/CategorySelector",
-  component: CategorySelector,
+  title: "Page/ListPage",
+  component: ListPage,
   decorators: [
     (Story) => (
       <Provider store={store}>
@@ -13,8 +13,6 @@ export default {
       </Provider>
     ),
   ],
-} as ComponentMeta<typeof CategorySelector>;
+} as ComponentMeta<typeof ListPage>;
 
-export const Default: ComponentStory<typeof CategorySelector> = () => (
-  <CategorySelector />
-);
+export const Default: ComponentStory<typeof ListPage> = () => <ListPage />;

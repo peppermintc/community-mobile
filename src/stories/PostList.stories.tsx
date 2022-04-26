@@ -1,11 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Provider } from "react-redux";
 import { store } from "..";
-import ListPage from "./ListPage";
+import PostList from "../components/PostList";
 
 export default {
-  title: "Page/ListPage",
-  component: ListPage,
+  title: "Component/PostList",
+  component: PostList,
   decorators: [
     (Story) => (
       <Provider store={store}>
@@ -13,6 +13,6 @@ export default {
       </Provider>
     ),
   ],
-} as ComponentMeta<typeof ListPage>;
+} as ComponentMeta<typeof PostList>;
 
-export const Default: ComponentStory<typeof ListPage> = () => <ListPage />;
+export const Default: ComponentStory<typeof PostList> = () => <PostList />;
