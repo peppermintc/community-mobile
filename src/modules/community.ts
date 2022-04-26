@@ -22,13 +22,19 @@ const SET_POSTS = "SET_POSTS";
 const SET_CURRENT_POST = "SET_CURRENT_POST";
 
 // Action Creators
-export const fetchCategories = () => async (dispatch: Dispatch) => {
-  const categories: Category[] = await axiosGetCategories();
-  dispatch({
-    type: SET_CATEGORIES,
-    payload: categories,
-  });
-};
+export const initCategorySelectorState =
+  (initialCategory: Category) => async (dispatch: Dispatch) => {
+    const categories: Category[] = await axiosGetCategories();
+    dispatch({
+      type: SET_CATEGORIES,
+      payload: categories,
+    });
+
+    dispatch({
+      type: SET_CURRENT_CATEGORY,
+      payload: initialCategory,
+    });
+  };
 
 export const setCurrentCategory =
   (currentCategory: Category) => (dispatch: Dispatch) => {

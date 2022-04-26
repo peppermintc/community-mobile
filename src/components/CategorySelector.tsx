@@ -5,6 +5,18 @@ import useActionCreators from "../hooks/useActionCreators";
 import { Category } from "../interfaces";
 import { RootState } from "../modules";
 
+const CATEGORY_ALL: Category = {
+  categoryPk: -1,
+  categoryCode: "ALL",
+  categoryName: "전체",
+};
+
+const CATEGORY_POPULAR: Category = {
+  categoryPk: 0,
+  categoryCode: "POPULAR",
+  categoryName: "⭐ 인기글",
+};
+
 interface ButtonsProps {
   children: React.ReactNode;
 }
@@ -119,50 +131,46 @@ const Buttons = ({ children }: ButtonsProps) => {
   );
 };
 
+const DefaultButtons = () => {
+  const { currentCategory } = useSelector(
+    (state: RootState) => state.community,
+  );
+
+  const { setCurrentCategory } = useActionCreators();
+
+  return (
+    <>
+      <Button
+        key={CATEGORY_ALL.categoryPk}
+        label={CATEGORY_ALL.categoryName}
+        isSelected={CATEGORY_ALL.categoryPk === currentCategory?.categoryPk}
+        onClick={() => setCurrentCategory(CATEGORY_ALL)}
+      />
+      <Button
+        key={CATEGORY_POPULAR.categoryPk}
+        label={CATEGORY_POPULAR.categoryName}
+        isSelected={CATEGORY_POPULAR.categoryPk === currentCategory?.categoryPk}
+        onClick={() => setCurrentCategory(CATEGORY_POPULAR)}
+      />
+    </>
+  );
+};
+
 const CategorySelector: React.FC = () => {
   const { categories, currentCategory } = useSelector(
     (state: RootState) => state.community,
   );
 
-  const { fetchCategories, setCurrentCategory } = useActionCreators();
-
-  const categoryAll: Category = {
-    categoryPk: -1,
-    categoryCode: "ALL",
-    categoryName: "전체",
-  };
-
-  const categoryPopular: Category = {
-    categoryPk: 0,
-    categoryCode: "POPULAR",
-    categoryName: "⭐ 인기글",
-  };
+  const { initCategorySelectorState, setCurrentCategory } = useActionCreators();
 
   useLayoutEffect(() => {
-    const initCategorySelectorState = () => {
-      fetchCategories();
-      setCurrentCategory(categoryAll);
-    };
-    initCategorySelectorState();
+    initCategorySelectorState(CATEGORY_ALL);
   }, []);
 
   return (
     <CategorySelectorContainer>
       <Buttons>
-        <Button
-          key={categoryAll.categoryPk}
-          label={categoryAll.categoryName}
-          isSelected={categoryAll.categoryPk === currentCategory?.categoryPk}
-          onClick={() => setCurrentCategory(categoryAll)}
-        />
-        <Button
-          key={categoryPopular.categoryPk}
-          label={categoryPopular.categoryName}
-          isSelected={
-            categoryPopular.categoryPk === currentCategory?.categoryPk
-          }
-          onClick={() => setCurrentCategory(categoryPopular)}
-        />
+        <DefaultButtons />
         {categories.map((category) => (
           <Button
             key={category.categoryPk}
