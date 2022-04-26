@@ -101,7 +101,7 @@ const CountButtonContainer = styled.button`
 
 const BackToList = () => {
   const navigate = useNavigate();
-  const onBackButtonClick = () => navigate(-1);
+  const onBackButtonClick = () => navigate("/community/list");
 
   return (
     <BackToListContainer>
