@@ -1,5 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import viewCountIcon from "../img/eye.png";
 import likeCountIcon from "../img/like-thumb.png";
@@ -10,6 +11,7 @@ import PostItemHeader from "./PostItemHeader";
 
 interface PostItemProps {
   post: Post;
+  onClick: React.MouseEventHandler;
 }
 
 interface CountInfoProps {
@@ -105,7 +107,7 @@ const CountInfo = ({ viewCount, likeCount, commentCount }: CountInfoProps) => {
   );
 };
 
-const PostItem = ({ post }: PostItemProps) => {
+const PostItem = ({ post, onClick }: PostItemProps) => {
   const getImageSrc = (post: Post) => {
     if (!post.imageUrl) return;
     if (typeof post.imageUrl === "string") {
@@ -116,7 +118,7 @@ const PostItem = ({ post }: PostItemProps) => {
   };
 
   return (
-    <PostItemContainer>
+    <PostItemContainer onClick={onClick}>
       <PostItemHeader post={post} />
       <Title>{post.title}</Title>
       <Content>{post.content}</Content>
@@ -131,6 +133,8 @@ const PostItem = ({ post }: PostItemProps) => {
 };
 
 const PostList: React.FC = () => {
+  const navigate = useNavigate();
+
   const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
 
   const { posts, currentCategory } = useSelector(
@@ -157,10 +161,17 @@ const PostList: React.FC = () => {
     setFilteredPosts(newFilteredCategory);
   }, [currentCategory]);
 
+  const onPostItemClick = (postPk: number) =>
+    navigate(`/community/post/${postPk}`);
+
   return (
     <PostListContainer>
       {filteredPosts.map((post) => (
-        <PostItem key={post.pk} post={post} />
+        <PostItem
+          key={post.pk}
+          post={post}
+          onClick={() => onPostItemClick(post.pk)}
+        />
       ))}
     </PostListContainer>
   );
