@@ -6,14 +6,14 @@ import * as communityActionCreators from "../modules/community";
 const useActionCreators = () => {
   const dispatch = useDispatch();
 
-  const { setCategories, setCurrentCategory, setPosts, setCurrentPost } =
+  const { fetchCategories, setCurrentCategory, setPosts, setCurrentPost } =
     useMemo(
       () => bindActionCreators(communityActionCreators, dispatch),
       [dispatch],
     );
 
   return {
-    setCategories,
+    fetchCategories,
     setCurrentCategory,
     setPosts,
     setCurrentPost,

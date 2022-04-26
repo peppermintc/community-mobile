@@ -2,6 +2,7 @@ import React, { MouseEvent, useLayoutEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import useActionCreators from "../hooks/useActionCreators";
+import { Category } from "../interfaces";
 import { RootState } from "../modules";
 
 interface ButtonsProps {
@@ -123,15 +124,45 @@ const CategorySelector: React.FC = () => {
     (state: RootState) => state.community,
   );
 
-  const { setCategories, setCurrentCategory } = useActionCreators();
+  const { fetchCategories, setCurrentCategory } = useActionCreators();
+
+  const categoryAll: Category = {
+    categoryPk: -1,
+    categoryCode: "ALL",
+    categoryName: "전체",
+  };
+
+  const categoryPopular: Category = {
+    categoryPk: 0,
+    categoryCode: "POPULAR",
+    categoryName: "⭐ 인기글",
+  };
 
   useLayoutEffect(() => {
-    setCategories();
+    const initCategorySelectorState = () => {
+      fetchCategories();
+      setCurrentCategory(categoryAll);
+    };
+    initCategorySelectorState();
   }, []);
 
   return (
     <CategorySelectorContainer>
       <Buttons>
+        <Button
+          key={categoryAll.categoryPk}
+          label={categoryAll.categoryName}
+          isSelected={categoryAll.categoryPk === currentCategory?.categoryPk}
+          onClick={() => setCurrentCategory(categoryAll)}
+        />
+        <Button
+          key={categoryPopular.categoryPk}
+          label={categoryPopular.categoryName}
+          isSelected={
+            categoryPopular.categoryPk === currentCategory?.categoryPk
+          }
+          onClick={() => setCurrentCategory(categoryPopular)}
+        />
         {categories.map((category) => (
           <Button
             key={category.categoryPk}

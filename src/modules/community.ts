@@ -22,7 +22,7 @@ const SET_CURRENT_POST = "SET_CURRENT_POST";
 const SET_CURRENT_CATEGORY = "SET_CURRENT_CATEGORY";
 
 // Action Creators
-export const setCategories = () => async (dispatch: Dispatch) => {
+export const fetchCategories = () => async (dispatch: Dispatch) => {
   const categories: Category[] = await axiosGetCategories();
   dispatch({
     type: SET_CATEGORIES,
