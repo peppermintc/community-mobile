@@ -170,10 +170,13 @@ const CountButton = ({ icon, count, onClick }: CountButtonProps) => {
 
 const DetailPage = () => {
   const { post_pk } = useParams();
-  const { currentPost, posts } = useSelector(
-    (state: RootState) => state.community,
+
+  const currentPost = useSelector(
+    (state: RootState) => state.community.currentPost,
   );
-  const { setCurrentPost } = useActionCreators();
+  const posts = useSelector((state: RootState) => state.community.posts);
+
+  const { setCurrentPost, updateCurrentPostViewCount } = useActionCreators();
 
   useEffect(() => {
     if (!posts) return;
@@ -189,6 +192,10 @@ const DetailPage = () => {
 
     initDetailPageState();
   }, [posts]);
+
+  useEffect(() => {
+    updateCurrentPostViewCount();
+  }, []);
 
   return (
     <Page>

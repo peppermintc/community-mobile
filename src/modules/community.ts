@@ -80,6 +80,27 @@ export const updateCurrentPostLikeCount =
     });
   };
 
+export const updateCurrentPostViewCount =
+  () => async (dispatch: Dispatch, getState: () => RootState) => {
+    const { posts, currentPost } = getState().community;
+
+    if (!currentPost) return;
+
+    const newPosts = posts.map((post) => {
+      if (post.pk === currentPost.pk) {
+        return {
+          ...post,
+          viewCount: post.viewCount + 1,
+        };
+      } else return post;
+    });
+
+    dispatch({
+      type: SET_POSTS,
+      payload: newPosts,
+    });
+  };
+
 // Initial State
 const initialState: CommunityState = {
   categories: [],

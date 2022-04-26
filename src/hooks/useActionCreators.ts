@@ -11,6 +11,7 @@ const useActionCreators = () => {
     setCurrentCategory,
     setCurrentPost,
     updateCurrentPostLikeCount,
+    updateCurrentPostViewCount,
   } = useMemo(
     () => bindActionCreators(communityActionCreators, dispatch),
     [dispatch],
@@ -21,6 +22,7 @@ const useActionCreators = () => {
     setCurrentCategory,
     setCurrentPost,
     updateCurrentPostLikeCount,
+    updateCurrentPostViewCount,
   };
 };
 
