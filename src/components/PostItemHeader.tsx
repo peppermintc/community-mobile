@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Post } from "../interfaces";
-import { formatWrittenAt } from "../utils";
+import { formatWrittenAt } from "../utils/formatWrittenAt";
 
 interface PostItemHeaderProps {
   post: Post | null;

@@ -9,6 +9,7 @@ import { RootState } from "../modules";
 import backIcon from "../img/back.png";
 import likeIcon from "../img/like-thumb-gray.png";
 import talkIcon from "../img/talk-gray.png";
+import { LinkGenerator } from "../utils/LinkGenerator";
 
 interface PostHeaderProps {
   post: Post;
@@ -182,7 +183,9 @@ const DetailPage = () => {
         <>
           <PostHeader post={currentPost} />
           <Title>{currentPost.title}</Title>
-          <Content>{currentPost.content}</Content>
+          <Content>
+            <LinkGenerator>{currentPost.content}</LinkGenerator>
+          </Content>
           <PostImage imgUrl={currentPost.imageUrl} />
           <PostFooter
             likeCount={currentPost.likeCount}
