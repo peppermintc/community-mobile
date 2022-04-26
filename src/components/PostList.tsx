@@ -6,17 +6,10 @@ import likeCountIcon from "../img/like-thumb.png";
 import talkCountIcon from "../img/talk.png";
 import { Post } from "../interfaces";
 import { RootState } from "../modules";
-import { formatWrittenAt } from "../utils";
+import PostItemHeader from "./PostItemHeader";
 
 interface PostItemProps {
   post: Post;
-}
-
-interface HeaderProps {
-  profileImageUrl: string;
-  userName: string;
-  category: string;
-  writtenAt: string;
 }
 
 interface CountInfoProps {
@@ -44,35 +37,6 @@ const PostListContainer = styled.div`
 const PostItemContainer = styled.div`
   background-color: #ffffff;
   padding: 24px 26px 20px 26px;
-`;
-
-const HeaderContainer = styled.div`
-  display: flex;
-`;
-
-const ProfileImage = styled.img`
-  border-radius: 50%;
-  width: 32px;
-`;
-
-const Section = styled.section`
-  width: 100%;
-  padding-left: 8px;
-  padding-top: 4px;
-`;
-
-const UserName = styled.div`
-  font-size: 12px;
-  font-weight: 700;
-  color: #222222;
-  width: fit-content;
-`;
-
-const PostInfo = styled.div`
-  font-size: 12px;
-  font-weight: 500;
-  color: #b4b4b4;
-  width: fit-content;
 `;
 
 const Title = styled.div`
@@ -122,25 +86,6 @@ const CountInfoItemContainer = styled.div`
   gap: 4px;
 `;
 
-const Header = ({
-  profileImageUrl,
-  userName,
-  category,
-  writtenAt,
-}: HeaderProps) => {
-  return (
-    <HeaderContainer>
-      <ProfileImage src={profileImageUrl} />
-      <Section>
-        <UserName>{userName}</UserName>
-        <PostInfo>
-          {category} ・ {formatWrittenAt(writtenAt)}
-        </PostInfo>
-      </Section>
-    </HeaderContainer>
-  );
-};
-
 const CountInfoItem = ({ icon, count }: CountInfoItemProps) => {
   return (
     <CountInfoItemContainer>
@@ -163,12 +108,7 @@ const CountInfo = ({ viewCount, likeCount, commentCount }: CountInfoProps) => {
 const PostItem = ({ post }: PostItemProps) => {
   return (
     <PostItemContainer>
-      <Header
-        profileImageUrl={post.writerProfileUrl}
-        userName={post.writerNickName}
-        category={post.categoryName}
-        writtenAt={post.writtenAt}
-      />
+      <PostItemHeader post={post} />
       <Title>{post.title}</Title>
       <Content>{post.content}</Content>
       {post.imageUrl && <PostImage src={post.imageUrl} alt="post image" />}
