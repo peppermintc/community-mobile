@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 import { axiosGetCategories, axiosGetPosts } from "../api";
+import { CATEGORY_ALL } from "../components/CategorySelector";
 import { Category, Post } from "../interfaces";
 
 // Interfaces
@@ -22,19 +23,25 @@ const SET_POSTS = "SET_POSTS";
 const SET_CURRENT_POST = "SET_CURRENT_POST";
 
 // Action Creators
-export const initCategorySelectorState =
-  (initialCategory: Category) => async (dispatch: Dispatch) => {
-    const categories: Category[] = await axiosGetCategories();
-    dispatch({
-      type: SET_CATEGORIES,
-      payload: categories,
-    });
+export const initListPageState = () => async (dispatch: Dispatch) => {
+  const posts: Post[] = await axiosGetPosts();
+  const categories: Category[] = await axiosGetCategories();
 
-    dispatch({
-      type: SET_CURRENT_CATEGORY,
-      payload: initialCategory,
-    });
-  };
+  dispatch({
+    type: SET_POSTS,
+    payload: posts,
+  });
+
+  dispatch({
+    type: SET_CATEGORIES,
+    payload: categories,
+  });
+
+  dispatch({
+    type: SET_CURRENT_CATEGORY,
+    payload: CATEGORY_ALL,
+  });
+};
 
 export const setCurrentCategory =
   (currentCategory: Category) => (dispatch: Dispatch) => {
@@ -43,14 +50,6 @@ export const setCurrentCategory =
       payload: currentCategory,
     });
   };
-
-export const fetchPosts = () => async (dispatch: Dispatch) => {
-  const posts: Post[] = await axiosGetPosts();
-  dispatch({
-    type: SET_POSTS,
-    payload: posts,
-  });
-};
 
 export const setCurrentPost = (currentPost: Post) => (dispatch: Dispatch) => {
   dispatch({

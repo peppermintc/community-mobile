@@ -1,6 +1,8 @@
+import { useLayoutEffect } from "react";
 import styled from "styled-components";
 import CategorySelector from "../components/CategorySelector";
 import PostList from "../components/PostList";
+import useActionCreators from "../hooks/useActionCreators";
 
 const Page = styled.div`
   display: flex;
@@ -17,6 +19,12 @@ const Title = styled.span`
 `;
 
 const ListPage: React.FC = () => {
+  const { initListPageState } = useActionCreators();
+
+  useLayoutEffect(() => {
+    initListPageState();
+  }, []);
+
   return (
     <Page>
       <Title>커뮤니티</Title>
