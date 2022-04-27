@@ -9,10 +9,7 @@ import { LinkGenerator } from "../utils/LinkGenerator";
 import BackToList from "../components/DetailPage/BackToList";
 import PostHeader from "../components/DetailPage/PostHeader";
 import PostFooter from "../components/DetailPage/PostFooter";
-
-interface PostImageProps {
-  imgUrl: string | string[] | null;
-}
+import PostImage from "../components/DetailPage/PostImage";
 
 const Page = styled.div`
   display: flex;
@@ -36,29 +33,6 @@ const Content = styled.div`
   line-height: 24px;
   color: #7a7a7a;
 `;
-
-const PostImageContainer = styled.img`
-  width: 100%;
-  object-fit: cover;
-  vertical-align: middle;
-`;
-
-const PostImage = ({ imgUrl }: PostImageProps) => {
-  if (imgUrl === null) return <div />;
-
-  if (typeof imgUrl === "string") {
-    return <PostImageContainer src={imgUrl} alt="post image" />;
-  }
-
-  const imageUrlArray = imgUrl;
-  return (
-    <>
-      {imageUrlArray.map((imgSrc: string, index) => (
-        <PostImageContainer key={index} src={imgSrc} alt="post image" />
-      ))}
-    </>
-  );
-};
 
 const DetailPage = () => {
   const { post_pk } = useParams();
