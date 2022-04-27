@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import useActionCreators from "../../hooks/useActionCreators";
 import { RootState } from "../../modules";
 import CategorySelector from "./CategorySelector";
+import ContentInput from "./ContentInput";
 import TitleInput from "./TitleInput";
 
 const WriteForm = () => {
@@ -45,6 +46,7 @@ const WriteForm = () => {
     <form onSubmit={onFormSubmit}>
       <CategorySelector />
       <TitleInput />
+      <ContentInput />
     </form>
   );
 };
