@@ -16,6 +16,10 @@ const TitleInputContainer = styled.input`
   &:focus {
     outline: none;
   }
+
+  &::placeholder {
+    color: #b4b4b4;
+  }
 `;
 
 const TitleInput = () => {
