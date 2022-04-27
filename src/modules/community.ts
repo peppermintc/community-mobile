@@ -11,6 +11,7 @@ interface Action {
 }
 
 export interface CommunityState {
+  isAppStateReady: boolean;
   categories: Category[];
   currentCategory: Category | null;
   posts: Post[];
@@ -24,6 +25,7 @@ const SET_CURRENT_CATEGORY = "SET_CURRENT_CATEGORY";
 const SET_POSTS = "SET_POSTS";
 const SET_CURRENT_POST = "SET_CURRENT_POST";
 const SET_FORM = "SET_FORM";
+const SET_IS_APP_STATE_READY = "SET_IS_APP_STATE_READY";
 
 // Action Creators
 export const initStore = () => async (dispatch: Dispatch) => {
@@ -43,6 +45,11 @@ export const initStore = () => async (dispatch: Dispatch) => {
   dispatch({
     type: SET_CURRENT_CATEGORY,
     payload: CATEGORY_ALL,
+  });
+
+  dispatch({
+    type: SET_IS_APP_STATE_READY,
+    payload: true,
   });
 };
 
@@ -112,6 +119,7 @@ export const setForm = (newForm: Post) => (dispatch: Dispatch) => {
 
 // Initial State
 const initialState: CommunityState = {
+  isAppStateReady: false,
   categories: [],
   currentCategory: null,
   posts: [],
@@ -149,6 +157,11 @@ const communityReducer = (
       return {
         ...state,
         form: action.payload,
+      };
+    case SET_IS_APP_STATE_READY:
+      return {
+        ...state,
+        isAppStateReady: action.payload,
       };
     default:
       return state;
