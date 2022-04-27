@@ -47,6 +47,9 @@ const ImageAttachButton = () => {
 
     const fileList = e.target.files;
 
+    if (fileList.length > 6)
+      return alert("6개 이상의 파일은 업로드 할 수 없습니다.");
+
     const updateFormImageUrl = () => {
       let loadCompleteCount = 0;
 
