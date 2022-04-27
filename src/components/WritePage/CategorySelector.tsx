@@ -33,6 +33,7 @@ const CurrentCategoryName = styled.span`
 const CategoryDropDownItem = styled.div`
   background-color: #ffffff;
   height: 45px;
+  width: 100vw;
   display: flex;
   align-items: center;
   padding-left: 20px;
@@ -42,6 +43,7 @@ const CategoryDropDownItem = styled.div`
 const CategoryDropDownContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const CategoryDropDown = ({ categories }: CategoryDropDownProps) => {
@@ -70,6 +72,12 @@ const CategoryDropDown = ({ categories }: CategoryDropDownProps) => {
     setIsDropDownOpen(false);
   };
 
+  const CategoryDropDownItemContainer = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+  `;
+
   return (
     <CategoryDropDownContainer>
       {form && (
@@ -79,15 +87,18 @@ const CategoryDropDown = ({ categories }: CategoryDropDownProps) => {
         </CurrentCategoryContainer>
       )}
 
-      {isDropDownOpen &&
-        categories.map((category) => (
-          <CategoryDropDownItem
-            key={category.categoryPk}
-            onClick={() => onDropDownItemClick(category)}
-          >
-            {category.categoryName}
-          </CategoryDropDownItem>
-        ))}
+      {isDropDownOpen && (
+        <CategoryDropDownItemContainer>
+          {categories.map((category) => (
+            <CategoryDropDownItem
+              key={category.categoryPk}
+              onClick={() => onDropDownItemClick(category)}
+            >
+              {category.categoryName}
+            </CategoryDropDownItem>
+          ))}
+        </CategoryDropDownItemContainer>
+      )}
     </CategoryDropDownContainer>
   );
 };
