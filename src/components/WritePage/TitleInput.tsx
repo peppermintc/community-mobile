@@ -38,6 +38,7 @@ const TitleInput = () => {
     <TitleInputContainer
       placeholder="제목을 작성해주세요"
       onChange={onInputChange}
+      maxLength={100}
     />
   );
 };
