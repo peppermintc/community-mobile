@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../modules";
-import closeIcon from "../../img/Close.png";
-import useActionCreators from "../../hooks/useActionCreators";
 import { Post } from "../../interfaces";
-import { forceReRender } from "@storybook/react";
+import useActionCreators from "../../hooks/useActionCreators";
+import closeIcon from "../../img/Close.png";
+
+interface PreviewItemsProps {
+  children: React.ReactNode;
+}
 
 interface PreviewItemProps {
   previewImageUrl: string;
@@ -23,6 +26,14 @@ const ImagePreviewContainer = styled.div`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+`;
+
+const PreviewItemsContainer = styled.div`
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  display: flex;
+  gap: 16px;
 `;
 
 const PreviewItemContainer = styled.div`
@@ -51,18 +62,6 @@ const CloseIconContainer = styled.img`
   right: 4px;
   cursor: pointer;
 `;
-
-const PreviewItemsContainer = styled.div`
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  display: flex;
-  gap: 16px;
-`;
-
-interface PreviewItemsProps {
-  children: React.ReactNode;
-}
 
 const PreviewItems = ({ children }: PreviewItemsProps) => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
