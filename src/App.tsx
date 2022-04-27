@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import useActionCreators from "./hooks/useActionCreators";
 import DetailPage from "./pages/DetailPage";
 import ListPage from "./pages/ListPage";
+import WritePage from "./pages/WritePage";
 
 const App = () => {
   const { initStore } = useActionCreators();
@@ -15,6 +16,7 @@ const App = () => {
     <Routes>
       <Route path="community/list" element={<ListPage />} />
       <Route path="community/post/:post_pk" element={<DetailPage />} />
+      <Route path="community/post/new" element={<WritePage />} />
     </Routes>
   );
 };
