@@ -1,11 +1,16 @@
 import styled from "styled-components";
+import ImageAttachButton from "./ImageAttachButton";
 
 const ImageAttacherContainer = styled.div`
-  height: 190px;
+  padding: 20px;
 `;
 
 const ImageAttacher = () => {
-  return <ImageAttacherContainer></ImageAttacherContainer>;
+  return (
+    <ImageAttacherContainer>
+      <ImageAttachButton />
+    </ImageAttacherContainer>
+  );
 };
 
 export default ImageAttacher;
