@@ -9,6 +9,7 @@ const Page = styled.div`
   min-height: 100vh;
   height: fit-content;
   width: 100%;
+  background-color: #ffffff;
 `;
 
 const Title = styled.span`
