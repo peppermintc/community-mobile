@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import WriteForm from "../components/WriteForm";
-import WritePageHeader from "../components/WritePageHeader";
+import WriteForm from "../components/WritePage/WriteForm";
+import WritePageHeader from "../components/WritePage/WritePageHeader";
 
 const Page = styled.div`
   display: flex;

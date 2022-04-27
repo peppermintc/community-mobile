@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import PostItemHeader from "../components/PostItemHeader";
+import PostItemHeader from "../components/common/PostItemHeader";
 import useActionCreators from "../hooks/useActionCreators";
 import { Post } from "../interfaces";
 import { RootState } from "../modules";

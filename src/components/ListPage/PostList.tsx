@@ -2,12 +2,12 @@ import { useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import viewCountIcon from "../img/eye.png";
-import likeCountIcon from "../img/like-thumb.png";
-import talkCountIcon from "../img/talk.png";
-import { Post } from "../interfaces";
-import { RootState } from "../modules";
-import PostItemHeader from "./PostItemHeader";
+import viewCountIcon from "../../img/eye.png";
+import likeCountIcon from "../../img/like-thumb.png";
+import talkCountIcon from "../../img/talk.png";
+import { Post } from "../../interfaces";
+import { RootState } from "../../modules";
+import PostItemHeader from "../common/PostItemHeader";
 
 interface PostItemProps {
   post: Post;

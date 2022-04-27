@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import backIcon from "../img/back.png";
+import backIcon from "../../img/back.png";
 
 const HeaderContainer = styled.div`
   height: 56px;

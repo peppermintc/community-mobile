@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Provider } from "react-redux";
 import { store } from "..";
-import CategorySelector from "../components/CategorySelector";
+import CategorySelector from "../components/ListPage/CategorySelector";
 
 export default {
   title: "Component/CategorySelector",

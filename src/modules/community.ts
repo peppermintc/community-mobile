@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { RootState } from ".";
 import { axiosGetCategories, axiosGetPosts } from "../api";
-import { CATEGORY_ALL } from "../components/CategorySelector";
+import { CATEGORY_ALL } from "../components/ListPage/CategorySelector";
 import { Category, Post } from "../interfaces";
 
 // Interfaces

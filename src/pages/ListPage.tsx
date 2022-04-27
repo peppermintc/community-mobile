@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import CategorySelector from "../components/CategorySelector";
-import PostList from "../components/PostList";
-import WriteButton from "../components/WriteButton";
+import CategorySelector from "../components/ListPage/CategorySelector";
+import PostList from "../components/ListPage/PostList";
+import WriteButton from "../components/ListPage/WriteButton";
 
 const Page = styled.div`
   display: flex;

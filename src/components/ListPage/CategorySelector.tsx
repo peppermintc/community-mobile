@@ -1,9 +1,9 @@
 import React, { MouseEvent, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import useActionCreators from "../hooks/useActionCreators";
-import { Category } from "../interfaces";
-import { RootState } from "../modules";
+import useActionCreators from "../../hooks/useActionCreators";
+import { Category } from "../../interfaces";
+import { RootState } from "../../modules";
 
 export const CATEGORY_ALL: Category = {
   categoryPk: -1,

@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useLayoutEffect, useState } from "react";
-import { Post } from "../interfaces";
+import { Post } from "../../interfaces";
 
 const WriteForm = () => {
   const [form, setForm] = useState<Post>();
