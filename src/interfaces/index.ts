@@ -16,5 +16,5 @@ export interface Post {
   imageUrl: string | string[] | null;
   writtenAt: string;
   writerNickName: string;
-  writerProfileUrl: string;
+  writerProfileUrl: string | null;
 }

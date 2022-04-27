@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Post } from "../../interfaces";
 import { formatWrittenAt } from "../../utils/formatWrittenAt";
+import defaultProfileImage from "../../img/default-profile.png";
 
 interface PostItemHeaderProps {
   post: Post | null;
@@ -37,9 +38,15 @@ const PostInfo = styled.div`
 `;
 
 const PostItemHeader = ({ post }: PostItemHeaderProps) => {
+  const getProfileImageSrc = () => {
+    if (post === undefined || post === null) return undefined;
+    if (post.writerProfileUrl === null) return defaultProfileImage;
+    else return post?.writerProfileUrl;
+  };
+
   return post ? (
     <PostItemHeaderContainer>
-      <ProfileImage src={post.writerProfileUrl} />
+      <ProfileImage src={getProfileImageSrc()} />
       <Section>
         <UserName>{post.writerNickName}</UserName>
         <PostInfo>
