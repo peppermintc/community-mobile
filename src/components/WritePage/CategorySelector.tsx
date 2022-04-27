@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../modules";
 import { Category, Post } from "../../interfaces";
-import dropDownArrowIcon from "../../img/dropdown-arrow.png";
-import { useState } from "react";
 import useActionCreators from "../../hooks/useActionCreators";
+import dropDownArrowIcon from "../../img/dropdown-arrow.png";
 
 interface CategoryDropDownProps {
   categories: Category[];
@@ -48,7 +48,7 @@ const CategoryDropDownContainer = styled.div`
 
 const CategoryDropDownItemContainer = styled.div`
   position: absolute;
-  top: 0;
+  top: 100%;
   left: 0;
 `;
 
@@ -60,7 +60,7 @@ const CategoryDropDown = ({ categories }: CategoryDropDownProps) => {
   );
   const { setForm } = useActionCreators();
 
-  const setFormCategory = (selectedCategory: Category) => {
+  const updateFormCategory = (selectedCategory: Category) => {
     if (!form) return;
 
     const newForm: Post = {
@@ -74,7 +74,7 @@ const CategoryDropDown = ({ categories }: CategoryDropDownProps) => {
   const currentCategoryOnClick = () => setIsDropDownOpen(!isDropDownOpen);
 
   const onDropDownItemClick = (category: Category) => {
-    setFormCategory(category);
+    updateFormCategory(category);
     setIsDropDownOpen(false);
   };
 
