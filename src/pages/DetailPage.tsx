@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import PostItemHeader from "../components/common/PostItemHeader";
 import useActionCreators from "../hooks/useActionCreators";
 import { Post } from "../interfaces";
 import { RootState } from "../modules";
-import backIcon from "../img/back.png";
 import likeIcon from "../img/like-thumb-gray.png";
 import talkIcon from "../img/talk-gray.png";
 import { LinkGenerator } from "../utils/LinkGenerator";
+import BackToList from "../components/DetailPage/BackToList";
 
 interface PostHeaderProps {
   post: Post;
@@ -37,22 +37,6 @@ const Page = styled.div`
   height: fit-content;
   width: 100%;
   background-color: #ffffff;
-`;
-
-const BackToListContainer = styled.div`
-  color: #b4b4b4;
-  font-size: 14px;
-  font-weight: 700px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 11px;
-`;
-
-const BackIcon = styled.img`
-  margin-right: 6px;
-  margin-left: 16px;
-  cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -100,23 +84,6 @@ const CountButtonContainer = styled.button`
   color: #7a7a7a;
   cursor: pointer;
 `;
-
-const BackToList = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const onBackButtonClick = () => {
-    const prevScrollPosition = location.state;
-    navigate("/community/list", { state: prevScrollPosition });
-  };
-
-  return (
-    <BackToListContainer>
-      <BackIcon src={backIcon} alt="back" onClick={onBackButtonClick} />글
-      목록으로
-    </BackToListContainer>
-  );
-};
 
 const PostImage = ({ imgUrl }: PostImageProps) => {
   if (imgUrl === null) return <div />;
