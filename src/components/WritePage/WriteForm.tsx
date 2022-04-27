@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useLayoutEffect } from "react";
+import { FormEvent, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import useActionCreators from "../../hooks/useActionCreators";
 import { RootState } from "../../modules";
@@ -11,7 +11,6 @@ const WriteForm = () => {
   const isAppStateReady = useSelector(
     (state: RootState) => state.community.isAppStateReady,
   );
-  const form = useSelector((state: RootState) => state.community.form);
   const { setForm } = useActionCreators();
 
   const setInitialFormDate = () => {
@@ -36,8 +35,6 @@ const WriteForm = () => {
     if (!isAppStateReady) return;
     setInitialFormDate();
   }, [isAppStateReady]);
-
-  useEffect(() => console.log({ form }), [form]);
 
   const onFormSubmit = (e: FormEvent) => {
     e.preventDefault();
