@@ -5,30 +5,34 @@ import { RootState } from "../../modules";
 import CategorySelector from "./CategorySelector";
 
 const WriteForm = () => {
+  const isAppStateReady = useSelector(
+    (state: RootState) => state.community.isAppStateReady,
+  );
   const form = useSelector((state: RootState) => state.community.form);
   const { setForm } = useActionCreators();
 
   const setInitialFormDate = () => {
     const initialForm = {
-      categoryPk: 1000,
+      categoryPk: 0,
       categoryName: "",
-      pk: 1000,
-      title: "title",
-      content: "content",
-      viewCount: 1000,
-      likeCount: 1000,
-      commentCount: 1000,
+      pk: 0,
+      title: "",
+      content: "",
+      viewCount: 0,
+      likeCount: 0,
+      commentCount: 0,
       imageUrl: null,
       writtenAt: "",
       writerNickName: "",
-      writerProfileUrl: "",
+      writerProfileUrl: null,
     };
     setForm(initialForm);
   };
 
   useLayoutEffect(() => {
+    if (!isAppStateReady) return;
     setInitialFormDate();
-  }, []);
+  }, [isAppStateReady]);
 
   useEffect(() => console.log({ form }), [form]);
 
