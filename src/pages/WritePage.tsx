@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import WriteForm from "../components/WriteForm";
 import WritePageHeader from "../components/WritePageHeader";
 
 const Page = styled.div`
@@ -13,6 +14,7 @@ const WritePage = () => {
   return (
     <Page>
       <WritePageHeader />
+      <WriteForm />
     </Page>
   );
 };
