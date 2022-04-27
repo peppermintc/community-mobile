@@ -46,6 +46,12 @@ const CategoryDropDownContainer = styled.div`
   position: relative;
 `;
 
+const CategoryDropDownItemContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
 const CategoryDropDown = ({ categories }: CategoryDropDownProps) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false);
 
@@ -71,12 +77,6 @@ const CategoryDropDown = ({ categories }: CategoryDropDownProps) => {
     setFormCategory(category);
     setIsDropDownOpen(false);
   };
-
-  const CategoryDropDownItemContainer = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-  `;
 
   return (
     <CategoryDropDownContainer>
