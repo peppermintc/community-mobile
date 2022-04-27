@@ -123,8 +123,8 @@ const PostImage = ({ imgUrl }: PostImageProps) => {
   const imageUrlArray = imgUrl;
   return (
     <>
-      {imageUrlArray.map((imgSrc: string) => (
-        <PostImageContainer src={imgSrc} alt="post image" />
+      {imageUrlArray.map((imgSrc: string, index) => (
+        <PostImageContainer key={index} src={imgSrc} alt="post image" />
       ))}
     </>
   );
