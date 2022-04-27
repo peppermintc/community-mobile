@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useActionCreators from "../../hooks/useActionCreators";
 import { Post } from "../../interfaces";
@@ -23,6 +23,7 @@ const CompleteButtonContainer = styled.button`
 `;
 
 const CompleteButton = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const form = useSelector((state: RootState) => state.community.form);
@@ -43,7 +44,9 @@ const CompleteButton = () => {
     };
 
     setPosts([...posts, newForm]);
-    navigate("/community/list");
+
+    const prevScrollPosition = location.state;
+    navigate("/community/list", { state: prevScrollPosition });
   };
 
   return (

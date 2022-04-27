@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import backIcon from "../../img/back.png";
 import CompleteButton from "./CompleteButton";
@@ -26,8 +26,13 @@ const HeaderTitle = styled.span`
 `;
 
 const WritePageHeader = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const onBackButtonClick = () => navigate("/community/list");
+
+  const onBackButtonClick = () => {
+    const prevScrollPosition = location.state;
+    navigate("/community/list", { state: prevScrollPosition });
+  };
 
   return (
     <HeaderContainer>

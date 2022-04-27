@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import PostItemHeader from "../components/common/PostItemHeader";
 import useActionCreators from "../hooks/useActionCreators";
@@ -102,8 +102,13 @@ const CountButtonContainer = styled.button`
 `;
 
 const BackToList = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const onBackButtonClick = () => navigate("/community/list");
+
+  const onBackButtonClick = () => {
+    const prevScrollPosition = location.state;
+    navigate("/community/list", { state: prevScrollPosition });
+  };
 
   return (
     <BackToListContainer>

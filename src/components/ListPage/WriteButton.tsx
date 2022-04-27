@@ -20,7 +20,10 @@ const WriteButtonContainer = styled.button`
 const WriteButton = () => {
   const navigate = useNavigate();
 
-  const moveToWritePage = () => navigate("/community/post/new");
+  const moveToWritePage = () => {
+    const scrollPostion = window.pageYOffset;
+    navigate("/community/post/new", { state: scrollPostion });
+  };
 
   const onButtonClick = () => moveToWritePage();
 

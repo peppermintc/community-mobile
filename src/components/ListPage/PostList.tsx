@@ -1,6 +1,6 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import viewCountIcon from "../../img/eye.png";
 import likeCountIcon from "../../img/like-thumb.png";
@@ -134,12 +134,26 @@ const PostItem = ({ post, onClick }: PostItemProps) => {
 
 const PostList: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
 
   const { posts, currentCategory } = useSelector(
     (state: RootState) => state.community,
   );
+
+  useEffect(() => {
+    let scrollTopValue: number;
+    if (typeof location.state === "number") scrollTopValue = location.state;
+    else scrollTopValue = 0;
+
+    setTimeout(() => {
+      window.scroll({
+        top: scrollTopValue,
+        left: 0,
+      });
+    }, 0);
+  }, [location]);
 
   useLayoutEffect(() => {
     const isAllCategory: boolean = currentCategory?.categoryPk === -1;
@@ -161,8 +175,12 @@ const PostList: React.FC = () => {
     setFilteredPosts(newFilteredCategory);
   }, [currentCategory]);
 
-  const onPostItemClick = (postPk: number) =>
-    navigate(`/community/post/${postPk}`);
+  const onPostItemClick = (postPk: number) => {
+    const scrollPostion = window.pageYOffset;
+    navigate(`/community/post/${postPk}`, {
+      state: scrollPostion,
+    });
+  };
 
   return (
     <PostListContainer>
