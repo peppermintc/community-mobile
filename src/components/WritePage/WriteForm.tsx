@@ -4,6 +4,7 @@ import useActionCreators from "../../hooks/useActionCreators";
 import { RootState } from "../../modules";
 import CategorySelector from "./CategorySelector";
 import ContentInput from "./ContentInput";
+import ImageAttacher from "./ImageAttacher";
 import TitleInput from "./TitleInput";
 
 const WriteForm = () => {
@@ -47,6 +48,7 @@ const WriteForm = () => {
       <CategorySelector />
       <TitleInput />
       <ContentInput />
+      <ImageAttacher />
     </form>
   );
 };
