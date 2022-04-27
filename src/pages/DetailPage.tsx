@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import PostItemHeader from "../components/common/PostItemHeader";
 import useActionCreators from "../hooks/useActionCreators";
 import { Post } from "../interfaces";
 import { RootState } from "../modules";
@@ -10,10 +9,7 @@ import likeIcon from "../img/like-thumb-gray.png";
 import talkIcon from "../img/talk-gray.png";
 import { LinkGenerator } from "../utils/LinkGenerator";
 import BackToList from "../components/DetailPage/BackToList";
-
-interface PostHeaderProps {
-  post: Post;
-}
+import PostHeader from "../components/DetailPage/PostHeader";
 
 interface PostFooterProps {
   likeCount: number;
@@ -51,10 +47,6 @@ const Content = styled.div`
   font-size: 15px;
   line-height: 24px;
   color: #7a7a7a;
-`;
-
-const PostHeaderContainer = styled.div`
-  margin: 0 24px 0 26px;
 `;
 
 const PostFooterContainer = styled.div`
@@ -102,14 +94,6 @@ const PostImage = ({ imgUrl }: PostImageProps) => {
   );
 };
 
-const PostHeader = ({ post }: PostHeaderProps) => {
-  return (
-    <PostHeaderContainer>
-      <PostItemHeader post={post} />
-    </PostHeaderContainer>
-  );
-};
-
 const PostFooter = ({ likeCount, commentCount }: PostFooterProps) => {
   const { currentPost } = useSelector((state: RootState) => state.community);
 
@@ -143,12 +127,10 @@ const CountButton = ({ icon, count, onClick }: CountButtonProps) => {
 
 const DetailPage = () => {
   const { post_pk } = useParams();
-
   const currentPost = useSelector(
     (state: RootState) => state.community.currentPost,
   );
   const posts = useSelector((state: RootState) => state.community.posts);
-
   const { setCurrentPost, updateCurrentPostViewCount } = useActionCreators();
 
   useEffect(() => {
