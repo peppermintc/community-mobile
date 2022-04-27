@@ -1,5 +1,7 @@
+import moment from "moment";
+
 const getCurrentTime = () => {
-  const currentTime = new Date().toISOString().slice(0, -5);
+  const currentTime = moment().format().slice(0, -6);
   return currentTime;
 };
 
