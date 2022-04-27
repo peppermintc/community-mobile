@@ -7,7 +7,7 @@ import { Post } from "../../interfaces";
 import { RootState } from "../../modules";
 
 const ImageAttachButtonContainer = styled.button`
-  width: 95px;
+  width: fit-content;
   background-color: blue;
   border: none;
   border-radius: 6px;
