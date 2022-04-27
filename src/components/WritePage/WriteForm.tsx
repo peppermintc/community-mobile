@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import useActionCreators from "../../hooks/useActionCreators";
 import { RootState } from "../../modules";
 import CategorySelector from "./CategorySelector";
+import TitleInput from "./TitleInput";
 
 const WriteForm = () => {
   const isAppStateReady = useSelector(
@@ -43,6 +44,7 @@ const WriteForm = () => {
   return (
     <form onSubmit={onFormSubmit}>
       <CategorySelector />
+      <TitleInput />
     </form>
   );
 };
