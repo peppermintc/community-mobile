@@ -15,6 +15,7 @@ export interface CommunityState {
   currentCategory: Category | null;
   posts: Post[];
   currentPost: Post | null;
+  form: Post | null;
 }
 
 // Action Types
@@ -22,6 +23,7 @@ const SET_CATEGORIES = "SET_CATEGORIES";
 const SET_CURRENT_CATEGORY = "SET_CURRENT_CATEGORY";
 const SET_POSTS = "SET_POSTS";
 const SET_CURRENT_POST = "SET_CURRENT_POST";
+const SET_FORM = "SET_FORM";
 
 // Action Creators
 export const initStore = () => async (dispatch: Dispatch) => {
@@ -107,6 +109,7 @@ const initialState: CommunityState = {
   currentCategory: null,
   posts: [],
   currentPost: null,
+  form: null,
 };
 
 // Reducer
@@ -134,6 +137,11 @@ const communityReducer = (
       return {
         ...state,
         currentPost: action.payload,
+      };
+    case SET_FORM:
+      return {
+        ...state,
+        form: action.payload,
       };
     default:
       return state;
