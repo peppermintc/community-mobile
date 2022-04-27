@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useLayoutEffect, useState } from "react";
 import { Post } from "../../interfaces";
+import CategorySelector from "./CategorySelector";
 
 const WriteForm = () => {
   const [form, setForm] = useState<Post>();
@@ -31,7 +32,7 @@ const WriteForm = () => {
 
   return (
     <form onSubmit={onFormSubmit}>
-      <div>카테고리</div>
+      <CategorySelector />
     </form>
   );
 };
