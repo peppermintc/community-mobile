@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore, Store } from "redux";
 import rootReducer from "./modules";
 import ReduxThunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 
-export const store = createStore(
+export const store: Store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(ReduxThunk)),
 );
