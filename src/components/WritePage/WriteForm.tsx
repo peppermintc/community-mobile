@@ -13,8 +13,8 @@ const WriteForm = () => {
 
   const setInitialFormDate = () => {
     const initialForm = {
-      categoryPk: 0,
-      categoryName: "",
+      categoryPk: 3,
+      categoryName: "질문/답변",
       pk: 0,
       title: "",
       content: "",
