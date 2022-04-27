@@ -5,6 +5,7 @@ import useActionCreators from "../../hooks/useActionCreators";
 import { Post } from "../../interfaces";
 import { RootState } from "../../modules";
 import getCurrentTime from "../../utils/getCurrentTime";
+import postPkGenerator from "../../utils/postPkGenerator";
 
 const CompleteButtonContainer = styled.button`
   border: none;
@@ -33,9 +34,10 @@ const CompleteButton = () => {
     if (!form) return;
 
     const currentTime = getCurrentTime();
-
+    const postPk = postPkGenerator();
     const newForm: Post = {
       ...form,
+      pk: postPk,
       writerNickName: "현재 작성자",
       writtenAt: currentTime,
     };
