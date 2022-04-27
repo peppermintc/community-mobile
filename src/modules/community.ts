@@ -103,6 +103,13 @@ export const updateCurrentPostViewCount =
     });
   };
 
+export const setForm = (newForm: Post) => (dispatch: Dispatch) => {
+  dispatch({
+    type: SET_FORM,
+    payload: newForm,
+  });
+};
+
 // Initial State
 const initialState: CommunityState = {
   categories: [],

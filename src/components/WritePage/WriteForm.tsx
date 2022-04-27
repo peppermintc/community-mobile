@@ -1,12 +1,14 @@
-import { FormEvent, useEffect, useLayoutEffect, useState } from "react";
-import { Post } from "../../interfaces";
+import { FormEvent, useEffect, useLayoutEffect } from "react";
+import { useSelector } from "react-redux";
+import useActionCreators from "../../hooks/useActionCreators";
+import { RootState } from "../../modules";
 import CategorySelector from "./CategorySelector";
 
 const WriteForm = () => {
-  const [form, setForm] = useState<Post>();
+  const form = useSelector((state: RootState) => state.community.form);
+  const { setForm } = useActionCreators();
 
-  // 초기 폼 데이터 설정
-  useLayoutEffect(() => {
+  const setInitialFormDate = () => {
     const initialForm = {
       categoryPk: 1000,
       categoryName: "",
@@ -22,6 +24,10 @@ const WriteForm = () => {
       writerProfileUrl: "",
     };
     setForm(initialForm);
+  };
+
+  useLayoutEffect(() => {
+    setInitialFormDate();
   }, []);
 
   useEffect(() => console.log({ form }), [form]);

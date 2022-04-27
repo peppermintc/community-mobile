@@ -12,6 +12,7 @@ const useActionCreators = () => {
     setCurrentPost,
     updateCurrentPostLikeCount,
     updateCurrentPostViewCount,
+    setForm,
   } = useMemo(
     () => bindActionCreators(communityActionCreators, dispatch),
     [dispatch],
@@ -23,6 +24,7 @@ const useActionCreators = () => {
     setCurrentPost,
     updateCurrentPostLikeCount,
     updateCurrentPostViewCount,
+    setForm,
   };
 };
 
