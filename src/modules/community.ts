@@ -117,6 +117,13 @@ export const setForm = (newForm: Post) => (dispatch: Dispatch) => {
   });
 };
 
+export const setPosts = (newPosts: Post[]) => (dispatch: Dispatch) => {
+  dispatch({
+    type: SET_POSTS,
+    payload: newPosts,
+  });
+};
+
 // Initial State
 const initialState: CommunityState = {
   isAppStateReady: false,

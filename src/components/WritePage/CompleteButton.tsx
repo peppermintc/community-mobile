@@ -1,0 +1,54 @@
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import useActionCreators from "../../hooks/useActionCreators";
+import { Post } from "../../interfaces";
+import { RootState } from "../../modules";
+import getCurrentTime from "../../utils/getCurrentTime";
+
+const CompleteButtonContainer = styled.button`
+  border: none;
+  height: 36px;
+  width: 64px;
+  background-color: #2c7fff;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+const CompleteButton = () => {
+  const navigate = useNavigate();
+
+  const form = useSelector((state: RootState) => state.community.form);
+  const posts = useSelector((state: RootState) => state.community.posts);
+
+  const { setPosts } = useActionCreators();
+
+  const onButtonClick = () => {
+    if (!form) return;
+
+    const currentTime = getCurrentTime();
+
+    const newForm: Post = {
+      ...form,
+      writerNickName: "현재 작성자",
+      writtenAt: currentTime,
+    };
+
+    setPosts([...posts, newForm]);
+    navigate("/community/list");
+  };
+
+  return (
+    <CompleteButtonContainer onClick={onButtonClick}>
+      완료
+    </CompleteButtonContainer>
+  );
+};
+
+export default CompleteButton;
