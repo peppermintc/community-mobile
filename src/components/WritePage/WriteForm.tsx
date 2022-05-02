@@ -13,7 +13,7 @@ const WriteForm = () => {
   );
   const { setForm } = useActionCreators();
 
-  const setInitialFormDate = () => {
+  const setInitialFormData = () => {
     const initialForm = {
       categoryPk: 3,
       categoryName: "질문/답변",
@@ -33,7 +33,7 @@ const WriteForm = () => {
 
   useLayoutEffect(() => {
     if (!isAppStateReady) return;
-    setInitialFormDate();
+    setInitialFormData();
   }, [isAppStateReady]);
 
   const onFormSubmit = (e: FormEvent) => {
