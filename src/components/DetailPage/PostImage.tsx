@@ -11,7 +11,7 @@ const PostImageContainer = styled.img`
 `;
 
 const PostImage = ({ imgUrl }: PostImageProps) => {
-  if (imgUrl === null) return <div />;
+  if (imgUrl === null) return <></>;
 
   if (typeof imgUrl === "string") {
     return <PostImageContainer src={imgUrl} alt="post image" />;
