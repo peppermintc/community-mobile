@@ -35,7 +35,7 @@
 - redux-devtools
 - styled-components
 - axios
-- storybook (호환 문제로 중단)
+- storybook
 
 ---
 
