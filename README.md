@@ -5,20 +5,13 @@
 
 ---
 
-## 명령어
-
-- `yarn install`: node_modules를 설치
-- `yarn start:mock-server`: mock 데이터 서버를 실행
-- `yarn start`: 클라이언트 서버 실행
-
----
-
 ## 실행 방법
 
-1. node_modules를 설치 `yarn install`
-2. mock 데이터 서버 실행 `yarn start:mock-server`
-3. mock 대아토 서버를 실행한 상태에서 클라이언트 서버 실행 `yarn start`
-4. 개발자 도구를 열어 `모바일 장치 환경`으로 토글한 후 사용하면 더욱 좋습니다.
+1. `git clone https://github.com/peppermintc/community-mobile.git` 원하는 폴더 위치에서 프로젝트 다운로드
+2. `yarn install` node_modules 설치
+3. `yarn start:mock-server` mock 데이터 서버 실행
+4. `yarn start` 클라이언트 서버 실행
+5. 개발자 도구를 열어 `모바일 장치 환경`으로 토글한 후 사용하면 더욱 좋습니다.
 
 ---
 
